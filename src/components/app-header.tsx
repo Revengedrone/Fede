@@ -16,7 +16,7 @@ const NAV_LINKS: { label: string; to?: string }[] = [
 function Logo() {
   return (
     <Link to="/dashboard" className="flex items-center gap-2">
-      <img src="/logo.png" alt="Logo" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
+      <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
       <span className="text-base font-extrabold tracking-tight text-[#6A2C91] sm:text-xl">ScotiaBank</span>
     </Link>
   );
@@ -90,3 +90,4 @@ export function AppFooter() {
     </footer>
   );
 }
+

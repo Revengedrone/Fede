@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
 function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <img src="/logo.png" alt="Logo" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
+      <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
       <span className="text-xl font-extrabold tracking-tight text-[#6A2C91]">ScotiaBank</span>
     </div>
   );
@@ -134,7 +134,7 @@ function LoginPage() {
           {/* Card */}
           <form onSubmit={onSubmit} className="mx-auto w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
             <div className="flex flex-col items-center">
-              <img src="/logo.png" alt="ScotiaBank" className="h-16 w-16 object-contain" />
+              <img src="/logo.png" alt="ScotiaBank" className="h-28 w-28 object-contain" />
               {mode === "signin" ? (
                 <>
                   <h3 className="mt-3 text-2xl font-bold text-slate-900">Welcome to</h3>
@@ -286,3 +286,4 @@ function LoginPage() {
     </div>
   );
 }
+
