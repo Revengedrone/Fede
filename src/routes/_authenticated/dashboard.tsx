@@ -1,7 +1,7 @@
 ﻿import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Bell, Eye, Wallet, Send, FileText, Plus, UserPlus, CreditCard, LayoutGrid,
   ChevronRight, ShieldCheck, Lock, Headphones, Smartphone, Globe, Menu, X, Check,
@@ -9,13 +9,20 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { getMyBalance, adjustMyBalance } from "@/lib/balance.functions";
 import { getMyTransactions } from "@/lib/transactions.functions";
-import cityImg from "@/assets/girl.png";
+import slide1 from "@/assets/img1.jpg";
+import slide2 from "@/assets/img2.jpg";
+import slide3 from "@/assets/img3.jpg";
+import slide4 from "@/assets/img4.jpg";
+import slide5 from "@/assets/img5.jpg";
+import slide6 from "@/assets/img6.jpg";
+
+const heroImages = [slide1, slide2, slide3, slide4, slide5, slide6];
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
   head: () => ({
     meta: [
-      { title: "Dashboard â€” ScotiaBank" },
+      { title: "Dashboard â€” WestStar Bank" },
       { name: "description", content: "View your accounts and total balance." },
     ],
   }),
@@ -28,7 +35,7 @@ function Logo() {
   return (
     <div className="flex items-center gap-2">
       <img src="/logo.png" alt="Logo" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
-      <span className="text-base font-extrabold tracking-tight text-[#6A2C91] sm:text-xl">ScotiaBank</span>
+      <span className="text-base font-extrabold tracking-tight text-[#6A2C91] sm:text-xl">WestStar Bank</span>
     </div>
   );
 }
@@ -377,7 +384,7 @@ function Dashboard() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-4 text-xs text-slate-500 sm:px-6">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
           <span className="hidden sm:inline">|</span>
-          <span>Â© 2026 ScotiaBank. All rights reserved.</span>
+          <span>Â© 2026 WestStar Bank. All rights reserved.</span>
           <span className="hidden sm:inline">|</span>
           <a href="#" className="text-[#6A2C91]">Privacy Policy</a>
           <a href="#" className="text-[#6A2C91]">Terms of Use</a>

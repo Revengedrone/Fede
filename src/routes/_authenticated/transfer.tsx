@@ -1,7 +1,7 @@
 ﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send, FileText, Plus, UserPlus, Check } from "lucide-react";
 import { getMyBalance, adjustMyBalance } from "@/lib/balance.functions";
 import { AppHeader, AppFooter } from "@/components/app-header";
@@ -10,8 +10,8 @@ export const Route = createFileRoute("/_authenticated/transfer")({
   component: TransferPage,
   head: () => ({
     meta: [
-      { title: "Transfer & Pay â€” ScotiaBank" },
-      { name: "description", content: "Transfer money, pay bills, and send funds from ScotiaBank." },
+      { title: "Transfer & Pay â€” WestStar Bank" },
+      { name: "description", content: "Transfer money, pay bills, and send funds from WestStar Bank." },
     ],
   }),
 });

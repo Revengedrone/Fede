@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sign in — ScotiaBank" },
-      { name: "description", content: "Securely sign in to your ScotiaBank accounts." },
-      { property: "og:title", content: "Sign in — ScotiaBank" },
-      { property: "og:description", content: "Securely sign in to your ScotiaBank accounts." },
+      { title: "Sign in — WestStar Bank" },
+      { name: "description", content: "Securely sign in to your WestStar Bank accounts." },
+      { property: "og:title", content: "Sign in — WestStar Bank" },
+      { property: "og:description", content: "Securely sign in to your WestStar Bank accounts." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Sign in — ScotiaBank" },
-      { name: "twitter:description", content: "Securely sign in to your ScotiaBank accounts." },
+      { name: "twitter:title", content: "Sign in — WestStar Bank" },
+      { name: "twitter:description", content: "Securely sign in to your WestStar Bank accounts." },
     ],
     links: [
       {
