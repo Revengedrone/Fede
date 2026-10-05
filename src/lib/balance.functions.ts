@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+﻿import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 export const getMyBalance = createServerFn({ method: "GET" })
@@ -54,7 +54,7 @@ export const adjustMyBalance = createServerFn({ method: "POST" })
       .eq("id", context.userId);
     if (updErr) throw new Error(updErr.message);
 
-    // Best-effort transaction record — the balance update above is the source of truth,
+    // Best-effort transaction record â€” the balance update above is the source of truth,
     // so we don't fail the whole request if logging the history row has a hiccup.
     const { error: txnErr } = await context.supabase.from("transactions").insert({
       user_id: context.userId,

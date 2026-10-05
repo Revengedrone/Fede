@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+﻿import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 export type TxnKind = "transfer" | "pay" | "add" | "send" | "other";
@@ -28,3 +28,4 @@ export const getMyTransactions = createServerFn({ method: "GET" })
       })),
     };
   });
+

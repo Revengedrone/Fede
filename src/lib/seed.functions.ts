@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+﻿import { createServerFn } from "@tanstack/react-start";
 
 // Idempotent one-shot: seed two demo users with fixed balances.
 // Safe to call repeatedly; existing users are left in place.
@@ -22,7 +22,7 @@ export const seedDemoUsers = createServerFn({ method: "POST" }).handler(async ()
     let userId = created?.user?.id;
 
     if (createErr) {
-      // Likely already exists — look them up.
+      // Likely already exists â€” look them up.
       const { data: list } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
       userId = list?.users.find((x) => x.email === u.email)?.id;
       if (!userId) {
@@ -43,3 +43,4 @@ export const seedDemoUsers = createServerFn({ method: "POST" }).handler(async ()
 
   return { results };
 });
+

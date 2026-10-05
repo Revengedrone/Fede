@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import { AppHeader, AppFooter } from "@/components/app-header";
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
   head: () => ({
-    meta: [{ title: "Admin — KchelBank" }],
+    meta: [{ title: "Admin â€” KchelBank" }],
   }),
 });
 
@@ -103,7 +103,7 @@ function AdminPage() {
     holdsMutation.mutate({ targetUserId: userId, holds: amt });
   }
 
-  // Not an admin (or not logged in as one) — the server functions enforce this regardless,
+  // Not an admin (or not logged in as one) â€” the server functions enforce this regardless,
   // this is just a friendlier message than a raw error.
   const forbidden = error && /forbidden/i.test((error as Error).message);
 
@@ -113,7 +113,7 @@ function AdminPage() {
 
       <section className="mx-auto w-full max-w-4xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
         {isLoading ? (
-          <p className="text-sm text-slate-500">Loading…</p>
+          <p className="text-sm text-slate-500">Loadingâ€¦</p>
         ) : forbidden ? (
           <div className="flex items-start gap-3 rounded-2xl bg-white p-6 shadow-sm">
             <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
@@ -124,7 +124,7 @@ function AdminPage() {
                 set <code className="rounded bg-slate-100 px-1">is_admin = true</code> on your profile row.
               </p>
               <Link to="/dashboard" className="mt-4 inline-block text-sm font-medium text-blue-600 hover:underline">
-                ← Back to dashboard
+                â† Back to dashboard
               </Link>
             </div>
           </div>
@@ -138,9 +138,9 @@ function AdminPage() {
                   <div>
                     <div className="text-sm font-semibold text-slate-900">{p.email ?? p.id}</div>
                     <div className="text-xs text-slate-500">
-                      {p.isAdmin ? "Admin" : "User"} · Balance: <span className="font-medium text-slate-700">{fmt(p.balance)}</span>
-                      {" · "}Holds: <span className="font-medium text-slate-700">{fmt(p.pendingHolds)}</span>
-                      {" · "}Available: <span className="font-medium text-slate-700">{fmt(Math.max(p.balance - p.pendingHolds, 0))}</span>
+                      {p.isAdmin ? "Admin" : "User"} Â· Balance: <span className="font-medium text-slate-700">{fmt(p.balance)}</span>
+                      {" Â· "}Holds: <span className="font-medium text-slate-700">{fmt(p.pendingHolds)}</span>
+                      {" Â· "}Available: <span className="font-medium text-slate-700">{fmt(Math.max(p.balance - p.pendingHolds, 0))}</span>
                     </div>
                   </div>
                   <button
@@ -234,7 +234,7 @@ function AdminPage() {
         )}
 
         <div className="mt-6">
-          <Link to="/dashboard" className="text-sm font-medium text-blue-600 hover:underline">← Back to dashboard</Link>
+          <Link to="/dashboard" className="text-sm font-medium text-blue-600 hover:underline">â† Back to dashboard</Link>
         </div>
       </section>
 
@@ -269,7 +269,7 @@ function UserTransactionsList({
   return (
     <div className="mt-4 rounded-lg border border-slate-100 p-3">
       {isLoading ? (
-        <p className="py-3 text-center text-xs text-slate-400">Loading transactions…</p>
+        <p className="py-3 text-center text-xs text-slate-400">Loading transactionsâ€¦</p>
       ) : (data?.transactions.length ?? 0) === 0 ? (
         <p className="py-3 text-center text-xs text-slate-400">No transactions yet.</p>
       ) : (
@@ -304,3 +304,4 @@ function UserTransactionsList({
     </div>
   );
 }
+

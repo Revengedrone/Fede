@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+﻿import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 async function assertIsAdmin(context: { supabase: any; userId: string }) {
@@ -168,3 +168,4 @@ export const adminDeleteTransaction = createServerFn({ method: "POST" })
 
     return { deleted: true };
   });
+

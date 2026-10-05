@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
+﻿import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Eye, EyeOff, Lock, User, Shield, ShieldCheck, Headphones, Smartphone, Globe } from "lucide-react";
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
   component: LoginPage,
   head: () => ({
     meta: [
-      { title: "Sign in — ScotiaBank" },
+      { title: "Sign in â€” ScotiaBank" },
       { name: "description", content: "Securely sign in to your ScotiaBank accounts." },
     ],
   }),
@@ -25,7 +25,7 @@ function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <img src="/logo.png" alt="Logo" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
-      <span className="text-xl font-extrabold tracking-tight text-[#D71E28]">ScotiaBank</span>
+      <span className="text-xl font-extrabold tracking-tight text-[#6A2C91]">ScotiaBank</span>
     </div>
   );
 }
@@ -100,7 +100,7 @@ function LoginPage() {
       navigate({ to: "/dashboard" });
       return;
     }
-    // Email confirmation required — try signing in immediately in case auto-confirm is on.
+    // Email confirmation required â€” try signing in immediately in case auto-confirm is on.
     const signIn = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (signIn.error) {
@@ -138,7 +138,7 @@ function LoginPage() {
               {mode === "signin" ? (
                 <>
                   <h3 className="mt-3 text-2xl font-bold text-slate-900">Welcome to</h3>
-                  <h2 className="text-3xl font-extrabold text-[#D71E28]">ScotiaBank</h2>
+                  <h2 className="text-3xl font-extrabold text-[#6A2C91]">ScotiaBank</h2>
                 </>
               ) : (
                 <>
@@ -151,7 +151,7 @@ function LoginPage() {
             <div className="mt-6 space-y-4">
               <div>
                 <label className="text-sm font-medium text-slate-700">Email or Username</label>
-                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#D71E28] ${fieldErrors.email ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
+                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#6A2C91] ${fieldErrors.email ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
                   <User className="h-4 w-4 text-slate-400" />
                   <input
                     type="text" inputMode="email" autoComplete="email" value={email}
@@ -165,7 +165,7 @@ function LoginPage() {
 
               <div>
                 <label className="text-sm font-medium text-slate-700">Password</label>
-                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#D71E28] ${fieldErrors.password ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
+                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#6A2C91] ${fieldErrors.password ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
                   <Lock className="h-4 w-4 text-slate-400" />
                   <input
                     type={showPw ? "text" : "password"} autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password}
@@ -183,11 +183,11 @@ function LoginPage() {
                 )}
                 {mode === "signup" && password && (
                   <ul className="mt-1 space-y-0.5 text-xs text-slate-500">
-                    <li className={password.length >= 8 ? "text-emerald-600" : ""}>• At least 8 characters</li>
-                    <li className={/[A-Z]/.test(password) ? "text-emerald-600" : ""}>• One uppercase letter</li>
-                    <li className={/[a-z]/.test(password) ? "text-emerald-600" : ""}>• One lowercase letter</li>
-                    <li className={/[0-9]/.test(password) ? "text-emerald-600" : ""}>• One number</li>
-                    <li className={/[^A-Za-z0-9]/.test(password) ? "text-emerald-600" : ""}>• One special character</li>
+                    <li className={password.length >= 8 ? "text-emerald-600" : ""}>â€¢ At least 8 characters</li>
+                    <li className={/[A-Z]/.test(password) ? "text-emerald-600" : ""}>â€¢ One uppercase letter</li>
+                    <li className={/[a-z]/.test(password) ? "text-emerald-600" : ""}>â€¢ One lowercase letter</li>
+                    <li className={/[0-9]/.test(password) ? "text-emerald-600" : ""}>â€¢ One number</li>
+                    <li className={/[^A-Za-z0-9]/.test(password) ? "text-emerald-600" : ""}>â€¢ One special character</li>
                   </ul>
                 )}
               </div>
@@ -198,17 +198,17 @@ function LoginPage() {
                     <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
                     Remember Me
                   </label>
-                  <a href="#" className="font-medium text-[#D71E28] hover:underline">Forgot Password?</a>
+                  <a href="#" className="font-medium text-[#6A2C91] hover:underline">Forgot Password?</a>
                 </div>
               )}
 
               {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
-              {info && <p className="rounded bg-[#D71E28]/10 px-3 py-2 text-sm text-[#D71E28]">{info}</p>}
+              {info && <p className="rounded bg-[#6A2C91]/10 px-3 py-2 text-sm text-[#6A2C91]">{info}</p>}
 
               <button type="submit" disabled={loading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#D71E28] py-3 text-sm font-semibold text-white shadow-lg shadow-[#D71E28]/30 transition hover:bg-[#B0181F] disabled:opacity-60">
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#6A2C91] py-3 text-sm font-semibold text-white shadow-lg shadow-[#6A2C91]/30 transition hover:bg-[#4A1F66] disabled:opacity-60">
                 <Lock className="h-4 w-4" />
-                {loading ? (mode === "signin" ? "Signing in…" : "Creating account…") : (mode === "signin" ? "Sign In" : "Create Account")}
+                {loading ? (mode === "signin" ? "Signing inâ€¦" : "Creating accountâ€¦") : (mode === "signin" ? "Sign In" : "Create Account")}
               </button>
 
               <div className="flex items-center gap-3 text-xs text-slate-400">
@@ -218,7 +218,7 @@ function LoginPage() {
               <button
                 type="button"
                 onClick={toggleMode}
-                className="w-full rounded-lg border border-[#D71E28] py-3 text-sm font-semibold text-[#D71E28] hover:bg-[#D71E28]/5"
+                className="w-full rounded-lg border border-[#6A2C91] py-3 text-sm font-semibold text-[#6A2C91] hover:bg-[#6A2C91]/5"
               >
                 {mode === "signin" ? "Create Account" : "Back to Sign In"}
               </button>
@@ -228,8 +228,8 @@ function LoginPage() {
                 Demo: <code className="font-mono">Christucker@gmail.com</code> / <code className="font-mono">@12340</code>
                 <button type="button"
                   onClick={async () => {
-                    setSeedMsg("Seeding…");
-                    try { const res = await runSeed(); setSeedMsg(res.results.map(r => `${r.email}: ${r.status}`).join(" · ")); }
+                    setSeedMsg("Seedingâ€¦");
+                    try { const res = await runSeed(); setSeedMsg(res.results.map(r => `${r.email}: ${r.status}`).join(" Â· ")); }
                     catch (e) { setSeedMsg((e as Error).message); }
                   }}
                   className="mt-2 w-full rounded border border-slate-300 bg-white px-2 py-1 text-slate-600 hover:bg-slate-100">
@@ -243,12 +243,12 @@ function LoginPage() {
           <div className="flex flex-col justify-center text-white">
             <h1 className="text-3xl font-light md:text-4xl">Welcome back to</h1>
             <h2 className="mt-1 text-4xl font-bold md:text-5xl">ScotiaBank</h2>
-            <div className="mt-3 h-1 w-16 rounded bg-[#FFCD00]" />
+            <div className="mt-3 h-1 w-16 rounded bg-[#F58220]" />
             <p className="mt-6 max-w-md text-white/90">
               Securely access your accounts, transfer funds, pay bills, and manage your finances all in one place.
             </p>
             <div className="mt-10 hidden md:block">
-              <Shield className="h-24 w-24 text-[#D71E28]/70" strokeWidth={1.2} />
+              <Shield className="h-24 w-24 text-[#6A2C91]/70" strokeWidth={1.2} />
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@ function LoginPage() {
             { icon: Smartphone, title: "Bank Anywhere", desc: "Access your accounts anytime, anywhere on any device." },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex items-start gap-3">
-              <div className="rounded-full border border-[#D71E28]/20 bg-white p-2 text-[#D71E28]"><Icon className="h-5 w-5" /></div>
+              <div className="rounded-full border border-[#6A2C91]/20 bg-white p-2 text-[#6A2C91]"><Icon className="h-5 w-5" /></div>
               <div>
                 <div className="text-sm font-semibold text-slate-900">{title}</div>
                 <div className="text-xs text-slate-500">{desc}</div>
@@ -277,10 +277,10 @@ function LoginPage() {
       <footer className="border-t border-slate-100 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-4 text-xs text-slate-500">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
-          <span>|</span><span>© 2026 ScotiaBank. All rights reserved.</span>
-          <span>|</span><a href="#" className="text-[#D71E28]">Privacy Policy</a>
-          <a href="#" className="text-[#D71E28]">Terms of Use</a>
-          <a href="#" className="text-[#D71E28]">Security Center</a>
+          <span>|</span><span>Â© 2026 ScotiaBank. All rights reserved.</span>
+          <span>|</span><a href="#" className="text-[#6A2C91]">Privacy Policy</a>
+          <a href="#" className="text-[#6A2C91]">Terms of Use</a>
+          <a href="#" className="text-[#6A2C91]">Security Center</a>
         </div>
       </footer>
     </div>

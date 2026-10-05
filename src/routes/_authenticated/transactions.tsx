@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/_authenticated/transactions")({
   component: TransactionsPage,
   head: () => ({
     meta: [
-      { title: "Transaction History — ScotiaBank" },
+      { title: "Transaction History â€” ScotiaBank" },
       { name: "description", content: "Search and review your ScotiaBank transaction history." },
     ],
   }),
@@ -52,22 +52,22 @@ function TransactionsPage() {
         <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-2">
           <div className="rounded-2xl bg-white p-4 shadow-sm">
             <div className="text-xs text-slate-500">Total money in</div>
-            <div className="mt-1 text-xl font-bold text-emerald-600">{isLoading ? "…" : fmt(totalIn)}</div>
+            <div className="mt-1 text-xl font-bold text-emerald-600">{isLoading ? "â€¦" : fmt(totalIn)}</div>
           </div>
           <div className="rounded-2xl bg-white p-4 shadow-sm">
             <div className="text-xs text-slate-500">Total money out</div>
-            <div className="mt-1 text-xl font-bold text-slate-900">{isLoading ? "…" : fmt(Math.abs(totalOut))}</div>
+            <div className="mt-1 text-xl font-bold text-slate-900">{isLoading ? "â€¦" : fmt(Math.abs(totalOut))}</div>
           </div>
         </div>
 
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#D71E28] sm:w-72">
+            <div className="flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#6A2C91] sm:w-72">
               <Search className="h-4 w-4 text-slate-400" />
               <input
                 value={query}
                 onChange={e => setQuery(e.target.value)}
-                placeholder="Search transactions…"
+                placeholder="Search transactionsâ€¦"
                 className="w-full bg-transparent px-2 py-2 text-sm outline-none placeholder:text-slate-400"
               />
             </div>
@@ -77,7 +77,7 @@ function TransactionsPage() {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`rounded-lg px-3 py-1.5 text-xs font-medium ${
-                    filter === f ? "bg-[#D71E28] text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    filter === f ? "bg-[#6A2C91] text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
                   {f === "all" ? "All" : f === "in" ? "Money in" : "Money out"}
@@ -88,7 +88,7 @@ function TransactionsPage() {
 
           <div className="mt-5 divide-y divide-slate-100">
             {isLoading ? (
-              <p className="py-10 text-center text-sm text-slate-400">Loading transactions…</p>
+              <p className="py-10 text-center text-sm text-slate-400">Loading transactionsâ€¦</p>
             ) : rows.length === 0 ? (
               <p className="py-10 text-center text-sm text-slate-400">
                 {data?.transactions?.length ? "No transactions match your search." : "No transactions yet."}
@@ -114,7 +114,7 @@ function TransactionsPage() {
         </div>
 
         <div className="mt-6">
-          <Link to="/dashboard" className="text-sm font-medium text-[#D71E28] hover:underline">← Back to dashboard</Link>
+          <Link to="/dashboard" className="text-sm font-medium text-[#6A2C91] hover:underline">â† Back to dashboard</Link>
         </div>
       </section>
 

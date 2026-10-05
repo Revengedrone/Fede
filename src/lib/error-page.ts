@@ -1,4 +1,4 @@
-export function renderErrorPage(): string {
+﻿export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -28,3 +28,4 @@ export function renderErrorPage(): string {
   </body>
 </html>`;
 }
+
