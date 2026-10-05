@@ -21,7 +21,7 @@ export const getAllProfiles = createServerFn({ method: "GET" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data, error } = await supabaseAdmin
       .from("profiles")
-      .select("id, email, current_balance, pending_holds, is_admin, created_at")
+      .select("id, email, current_balance, pending_holds, is_admin, created_at, monthly_income, monthly_expenses")
       .order("created_at", { ascending: true });
 
     if (error) throw new Error(error.message);
@@ -34,6 +34,8 @@ export const getAllProfiles = createServerFn({ method: "GET" })
         pendingHolds: Number(p.pending_holds ?? 0),
         isAdmin: p.is_admin,
         createdAt: p.created_at,
+        monthlyIncome: Number(p.monthly_income ?? 0),
+        monthlyExpenses: Number(p.monthly_expenses ?? 0),
       })),
     };
   });
@@ -60,6 +62,39 @@ export const adminSetPendingHolds = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
 
     return { pendingHolds: data.holds };
+  });
+
+export const adminSetMonthlyFigures = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { targetUserId: string; monthlyIncome: number; monthlyExpenses: number }) => {
+    if (!input?.targetUserId) throw new Error("Missing target user");
+    if (typeof input?.monthlyIncome !== "number" || !Number.isFinite(input.monthlyIncome) || input.monthlyIncome < 0) {
+      throw new Error("Invalid monthly income");
+    }
+    if (typeof input?.monthlyExpenses !== "number" || !Number.isFinite(input.monthlyExpenses) || input.monthlyExpenses < 0) {
+      throw new Error("Invalid monthly expenses");
+    }
+    if (input.monthlyIncome > 100_000_000 || input.monthlyExpenses > 100_000_000) {
+      throw new Error("Amount out of range");
+    }
+    return {
+      targetUserId: input.targetUserId,
+      monthlyIncome: input.monthlyIncome,
+      monthlyExpenses: input.monthlyExpenses,
+    };
+  })
+  .handler(async ({ context, data }) => {
+    await assertIsAdmin(context);
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    const { error } = await supabaseAdmin
+      .from("profiles")
+      .update({ monthly_income: data.monthlyIncome, monthly_expenses: data.monthlyExpenses })
+      .eq("id", data.targetUserId);
+    if (error) throw new Error(error.message);
+
+    return { monthlyIncome: data.monthlyIncome, monthlyExpenses: data.monthlyExpenses };
   });
 
 export const adminAdjustBalance = createServerFn({ method: "POST" })
@@ -168,4 +203,3 @@ export const adminDeleteTransaction = createServerFn({ method: "POST" })
 
     return { deleted: true };
   });
-

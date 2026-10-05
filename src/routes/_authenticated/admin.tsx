@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { ShieldAlert, Check, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import {
-  getAllProfiles, adminAdjustBalance, adminSetPendingHolds,
+  getAllProfiles, adminAdjustBalance, adminSetPendingHolds, adminSetMonthlyFigures,
   getUserTransactions, adminDeleteTransaction,
 } from "@/lib/admin.functions";
 import { AppHeader, AppFooter } from "@/components/app-header";
@@ -12,7 +12,7 @@ import { AppHeader, AppFooter } from "@/components/app-header";
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
   head: () => ({
-    meta: [{ title: "Admin â€” KchelBank" }],
+    meta: [{ title: "Admin — WestStar Bank" }],
   }),
 });
 
@@ -30,6 +30,7 @@ function AdminPage() {
   const fetchProfiles = useServerFn(getAllProfiles);
   const adjustBalance = useServerFn(adminAdjustBalance);
   const setHolds = useServerFn(adminSetPendingHolds);
+  const setMonthlyFigures = useServerFn(adminSetMonthlyFigures);
   const fetchUserTxns = useServerFn(getUserTransactions);
   const deleteTxn = useServerFn(adminDeleteTransaction);
 
@@ -43,6 +44,8 @@ function AdminPage() {
   const [labels, setLabels] = useState<Record<string, string>>({});
   const [dates, setDates] = useState<Record<string, string>>({});
   const [holdInputs, setHoldInputs] = useState<Record<string, string>>({});
+  const [incomeInputs, setIncomeInputs] = useState<Record<string, string>>({});
+  const [expenseInputs, setExpenseInputs] = useState<Record<string, string>>({});
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [toast, setToast] = useState<string | null>(null);
 
@@ -64,6 +67,17 @@ function AdminPage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-profiles"] });
       setToast("Pending holds updated.");
+      setTimeout(() => setToast(null), 3000);
+    },
+    onError: (err: Error) => setToast(err.message),
+  });
+
+  const monthlyFiguresMutation = useMutation({
+    mutationFn: (v: { targetUserId: string; monthlyIncome: number; monthlyExpenses: number }) =>
+      setMonthlyFigures({ data: v }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-profiles"] });
+      setToast("Monthly income/expenses updated.");
       setTimeout(() => setToast(null), 3000);
     },
     onError: (err: Error) => setToast(err.message),
@@ -103,7 +117,23 @@ function AdminPage() {
     holdsMutation.mutate({ targetUserId: userId, holds: amt });
   }
 
-  // Not an admin (or not logged in as one) â€” the server functions enforce this regardless,
+  function applyMonthlyFigures(userId: string, currentIncome: number, currentExpenses: number) {
+    const incomeRaw = incomeInputs[userId];
+    const expensesRaw = expenseInputs[userId];
+    const income = incomeRaw !== undefined && incomeRaw !== "" ? Number(incomeRaw) : currentIncome;
+    const expenses = expensesRaw !== undefined && expensesRaw !== "" ? Number(expensesRaw) : currentExpenses;
+    if (!Number.isFinite(income) || income < 0) {
+      setToast("Enter a valid monthly income (0 or more).");
+      return;
+    }
+    if (!Number.isFinite(expenses) || expenses < 0) {
+      setToast("Enter a valid monthly expenses (0 or more).");
+      return;
+    }
+    monthlyFiguresMutation.mutate({ targetUserId: userId, monthlyIncome: income, monthlyExpenses: expenses });
+  }
+
+  // Not an admin (or not logged in as one) — the server functions enforce this regardless,
   // this is just a friendlier message than a raw error.
   const forbidden = error && /forbidden/i.test((error as Error).message);
 
@@ -113,7 +143,7 @@ function AdminPage() {
 
       <section className="mx-auto w-full max-w-4xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
         {isLoading ? (
-          <p className="text-sm text-slate-500">Loadingâ€¦</p>
+          <p className="text-sm text-slate-500">Loading…</p>
         ) : forbidden ? (
           <div className="flex items-start gap-3 rounded-2xl bg-white p-6 shadow-sm">
             <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
@@ -123,8 +153,8 @@ function AdminPage() {
                 Your account isn't flagged as an admin. Ask whoever manages the Supabase project to
                 set <code className="rounded bg-slate-100 px-1">is_admin = true</code> on your profile row.
               </p>
-              <Link to="/dashboard" className="mt-4 inline-block text-sm font-medium text-blue-600 hover:underline">
-                â† Back to dashboard
+              <Link to="/dashboard" className="mt-4 inline-block text-sm font-medium text-[#6A2C91] hover:underline">
+                ← Back to dashboard
               </Link>
             </div>
           </div>
@@ -138,9 +168,13 @@ function AdminPage() {
                   <div>
                     <div className="text-sm font-semibold text-slate-900">{p.email ?? p.id}</div>
                     <div className="text-xs text-slate-500">
-                      {p.isAdmin ? "Admin" : "User"} Â· Balance: <span className="font-medium text-slate-700">{fmt(p.balance)}</span>
-                      {" Â· "}Holds: <span className="font-medium text-slate-700">{fmt(p.pendingHolds)}</span>
-                      {" Â· "}Available: <span className="font-medium text-slate-700">{fmt(Math.max(p.balance - p.pendingHolds, 0))}</span>
+                      {p.isAdmin ? "Admin" : "User"} · Balance: <span className="font-medium text-slate-700">{fmt(p.balance)}</span>
+                      {" · "}Holds: <span className="font-medium text-slate-700">{fmt(p.pendingHolds)}</span>
+                      {" · "}Available: <span className="font-medium text-slate-700">{fmt(Math.max(p.balance - p.pendingHolds, 0))}</span>
+                    </div>
+                    <div className="mt-0.5 text-xs text-slate-500">
+                      Monthly Income: <span className="font-medium text-emerald-600">{fmt(p.monthlyIncome)}</span>
+                      {" · "}Monthly Expenses: <span className="font-medium text-slate-700">{fmt(p.monthlyExpenses)}</span>
                     </div>
                   </div>
                   <button
@@ -168,14 +202,14 @@ function AdminPage() {
                     value={labels[p.id] ?? ""}
                     onChange={e => setLabels(l => ({ ...l, [p.id]: e.target.value }))}
                     placeholder="Note (optional)"
-                    className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500 sm:min-w-[10rem]"
+                    className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-[#6A2C91] sm:min-w-[10rem]"
                   />
                   <input
                     type="datetime-local"
                     value={dates[p.id] ?? ""}
                     onChange={e => setDates(d => ({ ...d, [p.id]: e.target.value }))}
                     max={todayLocalDatetime()}
-                    className="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-blue-500"
+                    className="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-[#6A2C91]"
                   />
                   <div className="flex gap-2">
                     <button
@@ -220,6 +254,43 @@ function AdminPage() {
                   </button>
                 </div>
 
+                {/* Monthly income / expenses */}
+                <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3 sm:flex-row sm:items-center sm:flex-wrap">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs text-slate-500 sm:w-28">Monthly Income</span>
+                    <div className="flex items-center rounded-lg border border-slate-200 px-3 sm:w-36">
+                      <span className="text-slate-400">$</span>
+                      <input
+                        type="number" min="0" step="0.01"
+                        value={incomeInputs[p.id] ?? ""}
+                        onChange={e => setIncomeInputs(i => ({ ...i, [p.id]: e.target.value }))}
+                        placeholder={fmt(p.monthlyIncome)}
+                        className="w-full bg-transparent px-2 py-2 text-sm outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs text-slate-500 sm:w-28">Monthly Expenses</span>
+                    <div className="flex items-center rounded-lg border border-slate-200 px-3 sm:w-36">
+                      <span className="text-slate-400">$</span>
+                      <input
+                        type="number" min="0" step="0.01"
+                        value={expenseInputs[p.id] ?? ""}
+                        onChange={e => setExpenseInputs(ex => ({ ...ex, [p.id]: e.target.value }))}
+                        placeholder={fmt(p.monthlyExpenses)}
+                        className="w-full bg-transparent px-2 py-2 text-sm outline-none"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => applyMonthlyFigures(p.id, p.monthlyIncome, p.monthlyExpenses)}
+                    disabled={monthlyFiguresMutation.isPending}
+                    className="rounded-lg bg-[#6A2C91] px-3 py-2 text-xs font-semibold text-white hover:bg-[#4A1F66] disabled:opacity-60"
+                  >
+                    Save
+                  </button>
+                </div>
+
                 {expanded[p.id] && (
                   <UserTransactionsList
                     userId={p.id}
@@ -234,7 +305,7 @@ function AdminPage() {
         )}
 
         <div className="mt-6">
-          <Link to="/dashboard" className="text-sm font-medium text-blue-600 hover:underline">â† Back to dashboard</Link>
+          <Link to="/dashboard" className="text-sm font-medium text-[#6A2C91] hover:underline">← Back to dashboard</Link>
         </div>
       </section>
 
@@ -269,7 +340,7 @@ function UserTransactionsList({
   return (
     <div className="mt-4 rounded-lg border border-slate-100 p-3">
       {isLoading ? (
-        <p className="py-3 text-center text-xs text-slate-400">Loading transactionsâ€¦</p>
+        <p className="py-3 text-center text-xs text-slate-400">Loading transactions…</p>
       ) : (data?.transactions.length ?? 0) === 0 ? (
         <p className="py-3 text-center text-xs text-slate-400">No transactions yet.</p>
       ) : (
@@ -304,4 +375,3 @@ function UserTransactionsList({
     </div>
   );
 }
-

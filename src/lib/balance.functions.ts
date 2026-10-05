@@ -6,7 +6,7 @@ export const getMyBalance = createServerFn({ method: "GET" })
   .handler(async ({ context }) => {
     const { data, error } = await context.supabase
       .from("profiles")
-      .select("current_balance, pending_holds, email")
+      .select("current_balance, pending_holds, email, monthly_income, monthly_expenses")
       .eq("id", context.userId)
       .maybeSingle();
 
@@ -21,6 +21,8 @@ export const getMyBalance = createServerFn({ method: "GET" })
       balance,
       pendingHolds,
       availableBalance: Math.max(balance - pendingHolds, 0),
+      monthlyIncome: Number(data.monthly_income ?? 0),
+      monthlyExpenses: Number(data.monthly_expenses ?? 0),
     };
   });
 
@@ -54,7 +56,7 @@ export const adjustMyBalance = createServerFn({ method: "POST" })
       .eq("id", context.userId);
     if (updErr) throw new Error(updErr.message);
 
-    // Best-effort transaction record â€” the balance update above is the source of truth,
+    // Best-effort transaction record — the balance update above is the source of truth,
     // so we don't fail the whole request if logging the history row has a hiccup.
     const { error: txnErr } = await context.supabase.from("transactions").insert({
       user_id: context.userId,
@@ -63,6 +65,5 @@ export const adjustMyBalance = createServerFn({ method: "POST" })
       kind: data.kind,
     });
     if (txnErr) console.error("[adjustMyBalance] failed to record transaction:", txnErr.message);
-
     return { balance: next };
   });
