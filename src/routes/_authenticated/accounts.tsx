@@ -49,7 +49,7 @@ function AccountsPage() {
                   <div className="rounded-lg bg-[#6A2C91]/10 p-2.5 text-[#6A2C91]"><a.icon className="h-5 w-5" /></div>
                   <div>
                     <div className="text-sm font-semibold text-slate-900">{a.name}</div>
-                    <div className="text-xs text-slate-500">â€¢â€¢â€¢â€¢ {a.num}</div>
+                    <div className="text-xs text-slate-500">•••• {a.num}</div>
                   </div>
                 </div>
               </div>
@@ -81,3 +81,4 @@ function AccountsPage() {
     </div>
   );
 }
+
