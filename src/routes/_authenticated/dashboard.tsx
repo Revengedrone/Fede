@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
   head: () => ({
     meta: [
-      { title: "Dashboard — CHASEBANK" },
+      { title: "Dashboard — WestStar Bank" },
       { name: "description", content: "View your accounts and total balance." },
     ],
   }),
@@ -27,8 +27,8 @@ const fmt = (n: number) =>
 function Logo() {
   return (
     <div className="flex items-center gap-2">
-      <img src="/logo.png" alt="Logo" className="h-7 w-7 shrink-0 object-contain sm:h-8 sm:w-8" />
-      <span className="text-base font-extrabold tracking-tight text-[#0a2a6b] sm:text-xl">CHASEBANK</span>
+      <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+      <span className="text-base font-extrabold tracking-tight text-[#6A2C91] sm:text-xl">WestStar Bank</span>
     </div>
   );
 }
@@ -126,22 +126,22 @@ function Dashboard() {
               <Link
                 key={l.label}
                 to={l.to}
-                className="hover:text-blue-600"
-                activeProps={{ className: "text-blue-600" }}
+                className="hover:text-[#6A2C91]"
+                activeProps={{ className: "text-[#6A2C91]" }}
               >
                 {l.label}
               </Link>
             ) : (
-              <a key={l.label} href="#" className="hover:text-blue-600">{l.label}</a>
+              <a key={l.label} href="#" className="hover:text-[#6A2C91]">{l.label}</a>
             ))}
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
             <button className="relative" aria-label="Notifications">
               <Bell className="h-5 w-5 text-slate-600" />
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] text-white">3</span>
+              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#6A2C91] text-[10px] text-white">3</span>
             </button>
             <div className="hidden items-center gap-2 sm:flex">
-              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue-100 text-sm font-semibold text-blue-700">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#6A2C91]/20 text-sm font-semibold text-[#6A2C91]">
                 {name.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0 text-right text-xs">
@@ -179,13 +179,13 @@ function Dashboard() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071a4a] via-[#0b2670] to-[#1e40af]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6A2C91] via-[#5A2478] to-[#F58220]" />
         <img src={cityImg} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen" />
         <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 md:grid-cols-2 md:gap-8">
           <div className="flex flex-col justify-center text-white">
             <p className="text-base font-light sm:text-lg">Good morning,</p>
             <h1 className="truncate text-3xl font-bold sm:text-4xl md:text-5xl">{name}</h1>
-            <p className="mt-3 max-w-sm text-sm text-blue-100 sm:text-base">
+            <p className="mt-3 max-w-sm text-sm text-white/80 sm:text-base">
               Here's what's happening with your accounts today.
             </p>
             <button className="mt-6 w-fit rounded-lg border border-white/50 px-5 py-2.5 text-sm font-medium hover:bg-white/10">
@@ -206,7 +206,7 @@ function Dashboard() {
                   {isLoading ? "…" : showBalance ? fmt(balance) : "••••••"}
                 </div>
               </div>
-              <div className="shrink-0 rounded-lg bg-blue-50 p-2 text-blue-600"><Wallet className="h-6 w-6" /></div>
+              <div className="shrink-0 rounded-lg bg-[#6A2C91]/10 p-2 text-[#6A2C91]"><Wallet className="h-6 w-6" /></div>
             </div>
             <div className="my-4 h-px bg-slate-100" />
             <div className="grid grid-cols-2 gap-4">
@@ -236,7 +236,7 @@ function Dashboard() {
             </div>
             <Link
               to="/accounts"
-              className="mt-4 flex w-full items-center justify-center gap-1 rounded-lg bg-blue-50 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-100"
+              className="mt-4 flex w-full items-center justify-center gap-1 rounded-lg bg-[#6A2C91]/10 py-2.5 text-sm font-medium text-[#6A2C91] hover:bg-[#6A2C91]/20"
             >
               View All Accounts <ChevronRight className="h-4 w-4" />
             </Link>
@@ -255,9 +255,9 @@ function Dashboard() {
                 <button
                   key={key}
                   onClick={() => setAction(key)}
-                  className="flex flex-col items-center gap-1.5 text-[11px] leading-tight text-slate-600 hover:text-blue-600 sm:gap-2 sm:text-xs"
+                  className="flex flex-col items-center gap-1.5 text-[11px] leading-tight text-slate-600 hover:text-[#6A2C91] sm:gap-2 sm:text-xs"
                 >
-                  <div className="rounded-full bg-blue-50 p-2.5 text-blue-600 sm:p-3"><Icon className="h-4 w-4 sm:h-5 sm:w-5" /></div>
+                  <div className="rounded-full bg-[#6A2C91]/10 p-2.5 text-[#6A2C91] sm:p-3"><Icon className="h-4 w-4 sm:h-5 sm:w-5" /></div>
                   <span className="text-center">{label}</span>
                 </button>
               ))}
@@ -272,13 +272,13 @@ function Dashboard() {
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-slate-900">Accounts</h3>
-            <Link to="/accounts" className="text-xs font-medium text-blue-600 hover:underline">View All</Link>
+            <Link to="/accounts" className="text-xs font-medium text-[#6A2C91] hover:underline">View All</Link>
           </div>
           <div className="mt-4 space-y-3">
             {accounts.map(a => (
               <div key={a.name} className="flex items-center justify-between gap-3 rounded-lg border border-slate-100 p-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="shrink-0 rounded-lg bg-blue-50 p-2 text-blue-600"><CreditCard className="h-5 w-5" /></div>
+                  <div className="shrink-0 rounded-lg bg-[#6A2C91]/10 p-2 text-[#6A2C91]"><CreditCard className="h-5 w-5" /></div>
                   <div className="min-w-0">
                     <div className="truncate text-sm font-semibold text-slate-900">{a.name}</div>
                     <div className="text-xs text-slate-500">•••• {a.num}</div>
@@ -297,7 +297,7 @@ function Dashboard() {
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-slate-900">Recent Transactions</h3>
-            <Link to="/transactions" className="text-xs font-medium text-blue-600 hover:underline">View All</Link>
+            <Link to="/transactions" className="text-xs font-medium text-[#6A2C91] hover:underline">View All</Link>
           </div>
           <div className="mt-4 space-y-3">
             {txnsLoading ? (
@@ -325,16 +325,16 @@ function Dashboard() {
           </div>
           <Link
             to="/transactions"
-            className="mt-4 flex w-full items-center justify-center gap-1 rounded-lg bg-blue-50 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-100"
+            className="mt-4 flex w-full items-center justify-center gap-1 rounded-lg bg-[#6A2C91]/10 py-2.5 text-sm font-medium text-[#6A2C91] hover:bg-[#6A2C91]/20"
           >
             View All Transactions <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
 
         {/* Promo */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0b2670] to-[#1e40af] p-6 text-white shadow-sm">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#6A2C91] to-[#F58220] p-6 text-white shadow-sm">
           <h3 className="text-2xl font-bold">Banking on<br />the go, anytime</h3>
-          <p className="mt-2 text-sm text-blue-100">Our mobile app puts your finances at your fingertips.</p>
+          <p className="mt-2 text-sm text-white/80">Our mobile app puts your finances at your fingertips.</p>
           <button
             onClick={() => setAction("more")}
             className="mt-4 rounded-lg border border-white/50 px-4 py-2 text-sm font-medium hover:bg-white/10"
@@ -358,7 +358,7 @@ function Dashboard() {
             { icon: Smartphone, title: "Bank Anywhere", desc: "Access your accounts anytime, anywhere on any device." },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex items-start gap-3">
-              <div className="shrink-0 rounded-full border border-blue-200 bg-white p-2 text-blue-600"><Icon className="h-5 w-5" /></div>
+              <div className="shrink-0 rounded-full border border-[#6A2C91]/20 bg-white p-2 text-[#6A2C91]"><Icon className="h-5 w-5" /></div>
               <div className="min-w-0">
                 <div className="text-sm font-semibold text-slate-900">{title}</div>
                 <div className="text-xs text-slate-500">{desc}</div>
@@ -372,11 +372,11 @@ function Dashboard() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-4 text-xs text-slate-500 sm:px-6">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
           <span className="hidden sm:inline">|</span>
-          <span>© 2026 CHASEBANK. All rights reserved.</span>
+          <span>© 2026 WestStar Bank. All rights reserved.</span>
           <span className="hidden sm:inline">|</span>
-          <a href="#" className="text-blue-600">Privacy Policy</a>
-          <a href="#" className="text-blue-600">Terms of Use</a>
-          <a href="#" className="text-blue-600">Security Center</a>
+          <a href="#" className="text-[#6A2C91]">Privacy Policy</a>
+          <a href="#" className="text-[#6A2C91]">Terms of Use</a>
+          <a href="#" className="text-[#6A2C91]">Security Center</a>
           <Globe className="h-3 w-3" />
         </div>
       </footer>
@@ -448,7 +448,7 @@ function ActionModal({
             </div>
           ))}
         </div>
-        <button onClick={onClose} className="mt-6 w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
+        <button onClick={onClose} className="mt-6 w-full rounded-lg bg-[#6A2C91] py-2.5 text-sm font-semibold text-white hover:bg-[#4A1F66]">
           Close
         </button>
       </ModalShell>
@@ -480,7 +480,7 @@ function ActionModal({
       <form onSubmit={submit} className="space-y-4">
         <div>
           <label className="text-xs font-medium text-slate-600">Amount (USD)</label>
-          <div className="mt-1 flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-blue-500">
+          <div className="mt-1 flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#6A2C91]">
             <span className="text-slate-400">$</span>
             <input
               type="number" min="0" step="0.01" inputMode="decimal"
@@ -497,7 +497,7 @@ function ActionModal({
             <input
               value={recipient} onChange={e => setRecipient(e.target.value)}
               placeholder={c.recipientLabel}
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#6A2C91]"
             />
           </div>
         )}
@@ -506,7 +506,7 @@ function ActionModal({
           <input
             value={note} onChange={e => setNote(e.target.value)}
             placeholder="What's this for?"
-            className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+            className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#6A2C91]"
           />
         </div>
         {err && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-600">{err}</p>}
@@ -516,7 +516,7 @@ function ActionModal({
           </button>
           <button
             type="submit" disabled={submitting}
-            className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60"
+            className="rounded-lg bg-[#6A2C91] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#4A1F66] disabled:opacity-60"
           >
             {submitting ? "Processing…" : c.cta}
           </button>
