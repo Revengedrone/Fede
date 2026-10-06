@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
   head: () => ({
     meta: [
-      { title: "Dashboard â€” WestStar Bank" },
+      { title: "Dashboard — WestStar Bank" },
       { name: "description", content: "View your accounts and total balance." },
     ],
   }),
@@ -179,8 +179,8 @@ function Dashboard() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6A2C91]/80 via-[#5A2478]/70 to-[#F58220]/60" />
         <img src={heroBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6A2C91]/80 via-[#5A2478]/70 to-[#F58220]/60" />
         <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 md:grid-cols-2 md:gap-8">
           <div className="flex flex-col justify-center text-white">
             <p className="text-base font-light sm:text-lg">Good morning,</p>
@@ -203,7 +203,7 @@ function Dashboard() {
                   </button>
                 </div>
                 <div className="mt-2 truncate text-3xl font-bold text-slate-900 sm:text-4xl">
-                  {isLoading ? "â€¦" : showBalance ? fmt(balance) : "â€¢â€¢â€¢â€¢â€¢â€¢"}
+                  {isLoading ? "…" : showBalance ? fmt(balance) : "••••••"}
                 </div>
               </div>
               <div className="shrink-0 rounded-lg bg-[#6A2C91]/10 p-2 text-[#6A2C91]"><Wallet className="h-6 w-6" /></div>
@@ -213,13 +213,13 @@ function Dashboard() {
               <div>
                 <div className="text-xs text-slate-500">Available Balance</div>
                 <div className="text-base font-semibold text-slate-900 sm:text-lg">
-                  {isLoading ? "â€¦" : showBalance ? fmt(availableBalance) : "â€¢â€¢â€¢â€¢â€¢â€¢"}
+                  {isLoading ? "…" : showBalance ? fmt(availableBalance) : "••••••"}
                 </div>
               </div>
               <div>
                 <div className="text-xs text-slate-500">Pending Holds</div>
                 <div className="text-base font-semibold text-slate-900 sm:text-lg">
-                  {isLoading ? "â€¦" : showBalance ? fmt(pendingHolds) : "â€¢â€¢â€¢â€¢â€¢â€¢"}
+                  {isLoading ? "…" : showBalance ? fmt(pendingHolds) : "••••••"}
                 </div>
               </div>
             </div>
@@ -281,7 +281,7 @@ function Dashboard() {
                   <div className="shrink-0 rounded-lg bg-[#6A2C91]/10 p-2 text-[#6A2C91]"><CreditCard className="h-5 w-5" /></div>
                   <div className="min-w-0">
                     <div className="truncate text-sm font-semibold text-slate-900">{a.name}</div>
-                    <div className="text-xs text-slate-500">â€¢â€¢â€¢â€¢ {a.num}</div>
+                    <div className="text-xs text-slate-500">•••• {a.num}</div>
                   </div>
                 </div>
                 <div className="shrink-0 text-right">
@@ -301,10 +301,10 @@ function Dashboard() {
           </div>
           <div className="mt-4 space-y-3">
             {txnsLoading ? (
-              <p className="py-6 text-center text-sm text-slate-400">Loadingâ€¦</p>
+              <p className="py-6 text-center text-sm text-slate-400">Loading…</p>
             ) : txns.length === 0 ? (
               <p className="py-6 text-center text-sm text-slate-400">
-                No transactions yet â€” try a Quick Action below.
+                No transactions yet — try a Quick Action below.
               </p>
             ) : (
               txns.map(t => (
@@ -342,8 +342,8 @@ function Dashboard() {
             Learn More
           </button>
           <div className="mt-6 flex flex-wrap gap-2">
-            <div className="rounded-md bg-black/40 px-3 py-2 text-[10px]">ðŸ“± App Store</div>
-            <div className="rounded-md bg-black/40 px-3 py-2 text-[10px]">â–¶ Google Play</div>
+            <div className="rounded-md bg-black/40 px-3 py-2 text-[10px]">📱 App Store</div>
+            <div className="rounded-md bg-black/40 px-3 py-2 text-[10px]">▶ Google Play</div>
           </div>
         </div>
       </section>
@@ -372,7 +372,7 @@ function Dashboard() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-4 text-xs text-slate-500 sm:px-6">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
           <span className="hidden sm:inline">|</span>
-          <span>Â© 2026 WestStar Bank. All rights reserved.</span>
+          <span>© 2026 WestStar Bank. All rights reserved.</span>
           <span className="hidden sm:inline">|</span>
           <a href="#" className="text-[#6A2C91]">Privacy Policy</a>
           <a href="#" className="text-[#6A2C91]">Terms of Use</a>
@@ -433,13 +433,13 @@ function ActionModal({
             ? "Manage debit and credit cards, freeze/unfreeze, set limits, and view your active card details."
             : action === "statements"
             ? "Download monthly statements and view your full transaction history for each account."
-            : "Investments, loans, foreign exchange, business tools and more â€” coming soon."}
+            : "Investments, loans, foreign exchange, business tools and more — coming soon."}
         </p>
         <div className="mt-5 space-y-2">
           {(action === "cards"
-            ? ["Debit Card â€¢â€¢â€¢â€¢ 4587", "Credit Card â€¢â€¢â€¢â€¢ 3456", "Virtual Card â€¢â€¢â€¢â€¢ 9021"]
+            ? ["Debit Card •••• 4587", "Credit Card •••• 3456", "Virtual Card •••• 9021"]
             : action === "statements"
-            ? ["Checking Account â€” May 2026", "Savings Account â€” May 2026", "Business Account â€” April 2026"]
+            ? ["Checking Account — May 2026", "Savings Account — May 2026", "Business Account — April 2026"]
             : ["Investments", "Loans & Mortgages", "Foreign Exchange", "Business Banking"]
           ).map(item => (
             <div key={item} className="flex items-center justify-between rounded-lg border border-slate-100 px-3 py-2.5 text-sm">
@@ -467,7 +467,7 @@ function ActionModal({
     const delta = c.direction * amt;
     const label =
       action === "transfer" ? `Transfer to ${recipient}` :
-      action === "pay"      ? `Bill payment â€” ${recipient}` :
+      action === "pay"      ? `Bill payment — ${recipient}` :
       action === "add"      ? `Deposit from ${recipient}` :
                               `Sent to ${recipient}`;
     const success =
@@ -518,7 +518,7 @@ function ActionModal({
             type="submit" disabled={submitting}
             className="rounded-lg bg-[#6A2C91] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#4A1F66] disabled:opacity-60"
           >
-            {submitting ? "Processingâ€¦" : c.cta}
+            {submitting ? "Processing…" : c.cta}
           </button>
         </div>
       </form>
@@ -544,4 +544,3 @@ function ModalShell({ title, onClose, children }: { title: string; onClose: () =
     </div>
   );
 }
-
