@@ -84,8 +84,18 @@ function Dashboard() {
   const availableBalance = data?.availableBalance ?? balance;
   const monthlyIncome = data?.monthlyIncome ?? 0;
   const monthlyExpenses = data?.monthlyExpenses ?? 0;
+  const { data: authData } = useQuery({
+    queryKey: ["my-auth-user"],
+    queryFn: async () => {
+      const { data } = await supabase.auth.getUser();
+      return data.user;
+    },
+  });
+
   const name =
-    data?.email?.split("@")[0]?.replace(/[^a-z]/gi, " ").replace(/\b\w/g, c => c.toUpperCase()) || "there";
+    (authData?.user_metadata?.full_name as string | undefined)?.trim() ||
+    data?.email?.split("@")[0]?.replace(/[^a-z]/gi, " ").replace(/\b\w/g, c => c.toUpperCase()) ||
+    "there";
 
   const mutation = useMutation({
     mutationFn: (v: { delta: number; label: string; kind: string; success: string }) =>
