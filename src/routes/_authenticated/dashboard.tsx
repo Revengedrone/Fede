@@ -1,4 +1,4 @@
-﻿import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -82,10 +82,6 @@ function Dashboard() {
   const balance = data?.balance ?? 0;
   const pendingHolds = data?.pendingHolds ?? 0;
   const availableBalance = data?.availableBalance ?? balance;
-  const monthlyIncome = data?.monthlyIncome ?? 0;
-  const monthlyExpenses = data?.monthlyExpenses ?? 0;
-  const monthlyIncome = data?.monthlyIncome ?? 0;
-  const monthlyExpenses = data?.monthlyExpenses ?? 0;
   const monthlyIncome = data?.monthlyIncome ?? 0;
   const monthlyExpenses = data?.monthlyExpenses ?? 0;
   const name =
