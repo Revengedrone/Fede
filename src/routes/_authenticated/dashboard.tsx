@@ -9,7 +9,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { getMyBalance, adjustMyBalance } from "@/lib/balance.functions";
 import { getMyTransactions } from "@/lib/transactions.functions";
-import cityImg from "@/assets/city-skyline.jpg";
+import heroBg from "@/assets/img1.jpg";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
