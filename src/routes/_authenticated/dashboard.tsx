@@ -1,7 +1,7 @@
 ﻿import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Bell, Eye, Wallet, Send, FileText, Plus, UserPlus, CreditCard, LayoutGrid,
   ChevronRight, ShieldCheck, Lock, Headphones, Smartphone, Globe, Menu, X, Check,
@@ -9,7 +9,14 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { getMyBalance, adjustMyBalance } from "@/lib/balance.functions";
 import { getMyTransactions } from "@/lib/transactions.functions";
-import heroBg from "@/assets/img1.jpg";
+import slide1 from "@/assets/img1.jpg";
+import slide2 from "@/assets/img2.jpg";
+import slide3 from "@/assets/img3.jpg";
+import slide4 from "@/assets/img4.jpg";
+import slide5 from "@/assets/img5.jpg";
+import slide6 from "@/assets/img6.jpg";
+
+const heroImages = [slide1, slide2, slide3, slide4, slide5, slide6];
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
@@ -63,6 +70,14 @@ function Dashboard() {
   const [showBalance, setShowBalance] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const balance = data?.balance ?? 0;
   const pendingHolds = data?.pendingHolds ?? 0;
@@ -179,7 +194,16 @@ function Dashboard() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <img src={heroBg} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        {heroImages.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt=""
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+              i === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-r from-[#6A2C91]/80 via-[#5A2478]/70 to-[#F58220]/60" />
         <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 md:grid-cols-2 md:gap-8">
           <div className="flex flex-col justify-center text-white">
