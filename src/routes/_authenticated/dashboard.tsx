@@ -87,14 +87,24 @@ function Dashboard() {
   const { data: authData } = useQuery({
     queryKey: ["my-auth-user"],
     queryFn: async () => {
-      const { data } = await supabase.auth.getUser();
-      return data.user;
+      const { data: u } = await supabase.auth.getUser();
+      const user = u.user;
+      if (!user) return null;
+      const { data: prof } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("id", user.id)
+        .maybeSingle();
+      return {
+        email: user.email ?? null,
+        fullName: ((prof as any)?.full_name as string | null) ?? null,
+      };
     },
   });
 
   const name =
-    (authData?.user_metadata?.full_name as string | undefined)?.trim() ||
-    data?.email?.split("@")[0]?.replace(/[^a-z]/gi, " ").replace(/\b\w/g, c => c.toUpperCase()) ||
+    authData?.fullName?.trim() ||
+    (authData?.email ?? data?.email)?.split("@")[0]?.replace(/[^a-z]/gi, " ").replace(/\b\w/g, c => c.toUpperCase()) ||
     "there";
 
   const mutation = useMutation({
