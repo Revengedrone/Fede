@@ -130,7 +130,6 @@ function Dashboard() {
     { name: "Checking Account", num: "4587", amt: balance * 0.35, kind: "Available" },
     { name: "Savings Account", num: "1245", amt: balance * 0.45, kind: "Available" },
     { name: "Business Account", num: "7890", amt: balance * 0.20, kind: "Available" },
-    { name: "Credit Card", num: "3456", amt: -1700, kind: "Outstanding" },
   ];
 
   const txns: Txn[] = (txnData?.transactions ?? []).map(t => ({
@@ -487,7 +486,7 @@ function ActionModal({
         </p>
         <div className="mt-5 space-y-2">
           {(action === "cards"
-            ? ["Debit Card •••• 4587", "Credit Card •••• 3456", "Virtual Card •••• 9021"]
+            ? ["Debit Card •••• 4587", "Virtual Card •••• 9021"]
             : action === "statements"
             ? ["Checking Account — May 2026", "Savings Account — May 2026", "Business Account — April 2026"]
             : ["Investments", "Loans & Mortgages", "Foreign Exchange", "Business Banking"]
