@@ -1,4 +1,4 @@
-﻿import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { Eye, EyeOff, Lock, User, Shield, ShieldCheck, Headphones, Smartphone, Globe } from "lucide-react";
@@ -32,7 +32,7 @@ function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-      <span className="text-xl font-extrabold tracking-tight text-[#6A2C91]">WestStar Bank</span>
+      <span className="text-xl font-extrabold tracking-tight text-[#003A70]">WestStar Bank</span>
     </div>
   );
 }
@@ -162,7 +162,7 @@ function LoginPage() {
               {mode === "signin" ? (
                 <>
                   <h3 className="mt-3 text-2xl font-bold text-slate-900">Welcome to</h3>
-                  <h2 className="text-3xl font-extrabold text-[#6A2C91]">WestStar Bank</h2>
+                  <h2 className="text-3xl font-extrabold text-[#003A70]">WestStar Bank</h2>
                 </>
               ) : (
                 <>
@@ -175,7 +175,7 @@ function LoginPage() {
             <div className="mt-6 space-y-4">
               <div>
                 <label className="text-sm font-medium text-slate-700">Email or Username</label>
-                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#6A2C91] ${fieldErrors.email ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
+                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#003A70] ${fieldErrors.email ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
                   <User className="h-4 w-4 text-slate-400" />
                   <input
                     type="text" inputMode="email" autoComplete="email" value={email}
@@ -189,7 +189,7 @@ function LoginPage() {
 
               <div>
                 <label className="text-sm font-medium text-slate-700">Password</label>
-                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#6A2C91] ${fieldErrors.password ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
+                <div className={`mt-1 flex items-center rounded-lg border px-3 focus-within:border-[#003A70] ${fieldErrors.password ? "border-red-400 bg-red-50/50" : "border-slate-200"}`}>
                   <Lock className="h-4 w-4 text-slate-400" />
                   <input
                     type={showPw ? "text" : "password"} autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password}
@@ -222,15 +222,15 @@ function LoginPage() {
                     <input type="checkbox" checked={remember} onChange={(e) => setRemember(e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
                     Remember Me
                   </label>
-                  <a href="#" className="font-medium text-[#6A2C91] hover:underline">Forgot Password?</a>
+                  <a href="#" className="font-medium text-[#003A70] hover:underline">Forgot Password?</a>
                 </div>
               )}
 
               {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
-              {info && <p className="rounded bg-[#6A2C91]/10 px-3 py-2 text-sm text-[#6A2C91]">{info}</p>}
+              {info && <p className="rounded bg-[#003A70]/10 px-3 py-2 text-sm text-[#003A70]">{info}</p>}
 
               <button type="submit" disabled={loading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#6A2C91] py-3 text-sm font-semibold text-white shadow-lg shadow-[#6A2C91]/30 transition hover:bg-[#4A1F66] disabled:opacity-60">
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#003A70] py-3 text-sm font-semibold text-white shadow-lg shadow-[#003A70]/30 transition hover:bg-[#002A52] disabled:opacity-60">
                 <Lock className="h-4 w-4" />
                 {loading ? (mode === "signin" ? "Signing in…" : "Creating account…") : (mode === "signin" ? "Sign In" : "Create Account")}
               </button>
@@ -242,7 +242,7 @@ function LoginPage() {
               <button
                 type="button"
                 onClick={toggleMode}
-                className="w-full rounded-lg border border-[#6A2C91] py-3 text-sm font-semibold text-[#6A2C91] hover:bg-[#6A2C91]/5"
+                className="w-full rounded-lg border border-[#003A70] py-3 text-sm font-semibold text-[#003A70] hover:bg-[#003A70]/5"
               >
                 {mode === "signin" ? "Create Account" : "Back to Sign In"}
               </button>
@@ -267,12 +267,12 @@ function LoginPage() {
           <div className="flex flex-col justify-center text-white">
             <h1 className="text-3xl font-light md:text-4xl">Welcome back to</h1>
             <h2 className="mt-1 text-4xl font-bold md:text-5xl">WestStar Bank</h2>
-            <div className="mt-3 h-1 w-16 rounded bg-[#F58220]" />
+            <div className="mt-3 h-1 w-16 rounded bg-[#3B82C4]" />
             <p className="mt-6 max-w-md text-white/90">
               Securely access your accounts, transfer funds, pay bills, and manage your finances all in one place.
             </p>
             <div className="mt-10 hidden md:block">
-              <Shield className="h-24 w-24 text-[#6A2C91]/70" strokeWidth={1.2} />
+              <Shield className="h-24 w-24 text-[#003A70]/70" strokeWidth={1.2} />
             </div>
           </div>
         </div>
@@ -288,7 +288,7 @@ function LoginPage() {
             { icon: Smartphone, title: "Bank Anywhere", desc: "Access your accounts anytime, anywhere on any device." },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex items-start gap-3">
-              <div className="rounded-full border border-[#6A2C91]/20 bg-white p-2 text-[#6A2C91]"><Icon className="h-5 w-5" /></div>
+              <div className="rounded-full border border-[#003A70]/20 bg-white p-2 text-[#003A70]"><Icon className="h-5 w-5" /></div>
               <div>
                 <div className="text-sm font-semibold text-slate-900">{title}</div>
                 <div className="text-xs text-slate-500">{desc}</div>
@@ -302,9 +302,9 @@ function LoginPage() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-4 text-xs text-slate-500">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
           <span>|</span><span>© 2026 WestStar Bank. All rights reserved.</span>
-          <span>|</span><a href="#" className="text-[#6A2C91]">Privacy Policy</a>
-          <a href="#" className="text-[#6A2C91]">Terms of Use</a>
-          <a href="#" className="text-[#6A2C91]">Security Center</a>
+          <span>|</span><a href="#" className="text-[#003A70]">Privacy Policy</a>
+          <a href="#" className="text-[#003A70]">Terms of Use</a>
+          <a href="#" className="text-[#003A70]">Security Center</a>
         </div>
       </footer>
     </div>

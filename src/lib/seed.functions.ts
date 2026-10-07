@@ -1,4 +1,4 @@
-﻿import { createServerFn } from "@tanstack/react-start";
+import { createServerFn } from "@tanstack/react-start";
 
 // Idempotent one-shot: seed two demo users with fixed balances.
 // Safe to call repeatedly; existing users are left in place.

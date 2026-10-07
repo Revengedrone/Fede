@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
@@ -62,7 +62,7 @@ function TransactionsPage() {
 
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#6A2C91] sm:w-72">
+            <div className="flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#003A70] sm:w-72">
               <Search className="h-4 w-4 text-slate-400" />
               <input
                 value={query}
@@ -77,7 +77,7 @@ function TransactionsPage() {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`rounded-lg px-3 py-1.5 text-xs font-medium ${
-                    filter === f ? "bg-[#6A2C91] text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    filter === f ? "bg-[#003A70] text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                   }`}
                 >
                   {f === "all" ? "All" : f === "in" ? "Money in" : "Money out"}
@@ -114,7 +114,7 @@ function TransactionsPage() {
         </div>
 
         <div className="mt-6">
-          <Link to="/dashboard" className="text-sm font-medium text-[#6A2C91] hover:underline">â† Back to dashboard</Link>
+          <Link to="/dashboard" className="text-sm font-medium text-[#003A70] hover:underline">â† Back to dashboard</Link>
         </div>
       </section>
 

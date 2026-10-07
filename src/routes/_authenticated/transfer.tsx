@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -94,7 +94,7 @@ function TransferPage() {
               key={t.key}
               onClick={() => { setTab(t.key); setErr(null); }}
               className={`flex flex-col items-center gap-1.5 rounded-xl py-3 text-[11px] font-medium ${
-                tab === t.key ? "bg-[#6A2C91] text-white" : "text-slate-600 hover:bg-slate-100"
+                tab === t.key ? "bg-[#003A70] text-white" : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               <t.icon className="h-4 w-4" />
@@ -106,7 +106,7 @@ function TransferPage() {
         <form onSubmit={submit} className="mt-4 space-y-4 rounded-2xl bg-white p-5 shadow-sm">
           <div>
             <label className="text-xs font-medium text-slate-600">Amount (USD)</label>
-            <div className="mt-1 flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#6A2C91]">
+            <div className="mt-1 flex items-center rounded-lg border border-slate-200 px-3 focus-within:border-[#003A70]">
               <span className="text-slate-400">$</span>
               <input
                 type="number" min="0" step="0.01" inputMode="decimal"
@@ -123,7 +123,7 @@ function TransferPage() {
             <input
               value={recipient} onChange={e => setRecipient(e.target.value)}
               placeholder={active.recipientLabel}
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#6A2C91]"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#003A70]"
             />
           </div>
 
@@ -132,7 +132,7 @@ function TransferPage() {
             <input
               value={note} onChange={e => setNote(e.target.value)}
               placeholder="What's this for?"
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#6A2C91]"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-[#003A70]"
             />
           </div>
 
@@ -140,14 +140,14 @@ function TransferPage() {
 
           <button
             type="submit" disabled={mutation.isPending}
-            className="w-full rounded-lg bg-[#6A2C91] py-2.5 text-sm font-semibold text-white hover:bg-[#4A1F66] disabled:opacity-60"
+            className="w-full rounded-lg bg-[#003A70] py-2.5 text-sm font-semibold text-white hover:bg-[#002A52] disabled:opacity-60"
           >
             {mutation.isPending ? "Processingâ€¦" : active.cta}
           </button>
         </form>
 
         <div className="mt-6">
-          <Link to="/dashboard" className="text-sm font-medium text-[#6A2C91] hover:underline">â† Back to dashboard</Link>
+          <Link to="/dashboard" className="text-sm font-medium text-[#003A70] hover:underline">â† Back to dashboard</Link>
         </div>
       </section>
 
