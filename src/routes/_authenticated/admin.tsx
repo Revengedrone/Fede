@@ -12,7 +12,7 @@ import { AppHeader, AppFooter } from "@/components/app-header";
 export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
   head: () => ({
-    meta: [{ title: "Admin — WestStar Bank" }],
+    meta: [{ title: "Admin — FEDERAL RESERVE" }],
   }),
 });
 

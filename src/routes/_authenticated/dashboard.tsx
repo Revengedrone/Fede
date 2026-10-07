@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
   head: () => ({
     meta: [
-      { title: "Dashboard — WestStar Bank" },
+      { title: "Dashboard — FEDERAL RESERVE" },
       { name: "description", content: "View your accounts and total balance." },
     ],
   }),
@@ -35,7 +35,7 @@ function Logo() {
   return (
     <div className="flex items-center gap-2">
       <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-      <span className="text-base font-extrabold tracking-tight text-[#003A70] sm:text-xl">WestStar Bank</span>
+      <span className="text-base font-extrabold tracking-tight text-[#003A70] sm:text-xl">FEDERAL RESERVE</span>
     </div>
   );
 }
@@ -422,7 +422,7 @@ function Dashboard() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-4 text-xs text-slate-500 sm:px-6">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
           <span className="hidden sm:inline">|</span>
-          <span>© 2026 WestStar Bank. All rights reserved.</span>
+          <span>© 2026 FEDERAL RESERVE. All rights reserved.</span>
           <span className="hidden sm:inline">|</span>
           <a href="#" className="text-[#003A70]">Privacy Policy</a>
           <a href="#" className="text-[#003A70]">Terms of Use</a>

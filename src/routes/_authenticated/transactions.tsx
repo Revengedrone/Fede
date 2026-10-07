@@ -10,8 +10,8 @@ export const Route = createFileRoute("/_authenticated/transactions")({
   component: TransactionsPage,
   head: () => ({
     meta: [
-      { title: "Transaction History â€” WestStar Bank" },
-      { name: "description", content: "Search and review your WestStar Bank transaction history." },
+      { title: "Transaction History â€” FEDERAL RESERVE" },
+      { name: "description", content: "Search and review your FEDERAL RESERVE transaction history." },
     ],
   }),
 });

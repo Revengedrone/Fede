@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sign in — WestStar Bank" },
-      { name: "description", content: "Securely sign in to your WestStar Bank accounts." },
-      { property: "og:title", content: "Sign in — WestStar Bank" },
-      { property: "og:description", content: "Securely sign in to your WestStar Bank accounts." },
+      { title: "Sign in — FEDERAL RESERVE" },
+      { name: "description", content: "Securely sign in to your FEDERAL RESERVE accounts." },
+      { property: "og:title", content: "Sign in — FEDERAL RESERVE" },
+      { property: "og:description", content: "Securely sign in to your FEDERAL RESERVE accounts." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Sign in — WestStar Bank" },
-      { name: "twitter:description", content: "Securely sign in to your WestStar Bank accounts." },
+      { name: "twitter:title", content: "Sign in — FEDERAL RESERVE" },
+      { name: "twitter:description", content: "Securely sign in to your FEDERAL RESERVE accounts." },
     ],
     links: [
       {

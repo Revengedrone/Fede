@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
   component: LoginPage,
   head: () => ({
     meta: [
-      { title: "Sign in — WestStar Bank" },
-      { name: "description", content: "Securely sign in to your WestStar Bank accounts." },
+      { title: "Sign in — FEDERAL RESERVE" },
+      { name: "description", content: "Securely sign in to your FEDERAL RESERVE accounts." },
     ],
   }),
   beforeLoad: async () => {
@@ -32,7 +32,7 @@ function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <img src="/logo.png" alt="Logo" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
-      <span className="text-xl font-extrabold tracking-tight text-[#003A70]">WestStar Bank</span>
+      <span className="text-xl font-extrabold tracking-tight text-[#003A70]">FEDERAL RESERVE</span>
     </div>
   );
 }
@@ -158,16 +158,16 @@ function LoginPage() {
           {/* Card */}
           <form onSubmit={onSubmit} className="mx-auto w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
             <div className="flex flex-col items-center">
-              <img src="/logo.png" alt="WestStar Bank" className="h-28 w-28 object-contain" />
+              <img src="/logo.png" alt="FEDERAL RESERVE" className="h-28 w-28 object-contain" />
               {mode === "signin" ? (
                 <>
                   <h3 className="mt-3 text-2xl font-bold text-slate-900">Welcome to</h3>
-                  <h2 className="text-3xl font-extrabold text-[#003A70]">WestStar Bank</h2>
+                  <h2 className="text-3xl font-extrabold text-[#003A70]">FEDERAL RESERVE</h2>
                 </>
               ) : (
                 <>
                   <h3 className="mt-3 text-2xl font-bold text-slate-900">Create your account</h3>
-                  <p className="text-sm text-slate-500">Sign up to get started with WestStar Bank</p>
+                  <p className="text-sm text-slate-500">Sign up to get started with FEDERAL RESERVE</p>
                 </>
               )}
             </div>
@@ -266,7 +266,7 @@ function LoginPage() {
 
           <div className="flex flex-col justify-center text-white">
             <h1 className="text-3xl font-light md:text-4xl">Welcome back to</h1>
-            <h2 className="mt-1 text-4xl font-bold md:text-5xl">WestStar Bank</h2>
+            <h2 className="mt-1 text-4xl font-bold md:text-5xl">FEDERAL RESERVE</h2>
             <div className="mt-3 h-1 w-16 rounded bg-[#3B82C4]" />
             <p className="mt-6 max-w-md text-white/90">
               Securely access your accounts, transfer funds, pay bills, and manage your finances all in one place.
@@ -301,7 +301,7 @@ function LoginPage() {
       <footer className="border-t border-slate-100 bg-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-4 text-xs text-slate-500">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> SSL Secured</span>
-          <span>|</span><span>© 2026 WestStar Bank. All rights reserved.</span>
+          <span>|</span><span>© 2026 FEDERAL RESERVE. All rights reserved.</span>
           <span>|</span><a href="#" className="text-[#003A70]">Privacy Policy</a>
           <a href="#" className="text-[#003A70]">Terms of Use</a>
           <a href="#" className="text-[#003A70]">Security Center</a>
